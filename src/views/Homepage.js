@@ -4,12 +4,22 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import backgroundImage from '../img/background.png';
+import backgroundImage from "../img/background.png";
+import Stack from "@mui/material/Stack";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Divider from "@mui/material/Divider";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 const pages = ["Form Pendaftaran"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -33,11 +43,15 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <Box>
+    <Box
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+      }}
+    >
       <AppBar sx={{ background: "#003177" }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
             <Box sx={{ mr: 2, display: { xs: "none", md: "block" } }}>
               <img src={require("../img/logo.png")} width="40" />
             </Box>
@@ -94,30 +108,11 @@ function ResponsiveAppBar() {
                 ))}
               </Menu>
             </Box>
-            {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
             <Box
               sx={{ flexGrow: 1, mr: 2, display: { xs: "flex", md: "none" } }}
             >
               <img src={require("../img/logo.png")} width="40" />
             </Box>
-            {/* <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                  mr: 2,
-                  display: { xs: "flex", md: "none" },
-                  flexGrow: 1,
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-            >
-              LOGO
-            </Typography> */}
             <Box
               sx={{ flexGrow: 1, display: { xs: "none", md: "block" } }}
             ></Box>
@@ -137,62 +132,142 @@ function ResponsiveAppBar() {
       </AppBar>
 
       <Box
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          height: "100vh",
-        }}
-      >
-
-      <Box
         component="main"
         sx={{
-          p: 3,
+          p: 5,
           minHeight: "100vh",
         }}
       >
         <Toolbar />
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-          unde fugit veniam eius, perspiciatis sunt? Corporis qui ducimus
-          quibusdam, aliquam dolore excepturi quae. Distinctio enim at eligendi
-          perferendis in cum quibusdam sed quae, accusantium et aperiam? Quod
-          itaque exercitationem, at ab sequi qui modi delectus quia corrupti
-          alias distinctio nostrum. Minima ex dolor modi inventore sapiente
-          necessitatibus aliquam fuga et. Sed numquam quibusdam at officia
-          sapiente porro maxime corrupti perspiciatis asperiores, exercitationem
-          eius nostrum consequuntur iure aliquam itaque, assumenda et! Quibusdam
-          temporibus beatae doloremque voluptatum doloribus soluta accusamus
-          porro reprehenderit eos inventore facere, fugit, molestiae ab officiis
-          illo voluptates recusandae. Vel dolor nobis eius, ratione atque
-          soluta, aliquam fugit qui iste architecto perspiciatis. Nobis,
-          voluptatem! Cumque, eligendi unde aliquid minus quis sit debitis
-          obcaecati error, delectus quo eius exercitationem tempore. Delectus
-          sapiente, provident corporis dolorum quibusdam aut beatae repellendus
-          est labore quisquam praesentium repudiandae non vel laboriosam quo ab
-          perferendis velit ipsa deleniti modi! Ipsam, illo quod. Nesciunt
-          commodi nihil corrupti cum non fugiat praesentium doloremque
-          architecto laborum aliquid. Quae, maxime recusandae? Eveniet dolore
-          molestiae dicta blanditiis est expedita eius debitis cupiditate porro
-          sed aspernatur quidem, repellat nihil quasi praesentium quia eos,
-          quibusdam provident. Incidunt tempore vel placeat voluptate iure
-          labore, repellendus beatae quia unde est aliquid dolor molestias
-          libero. Reiciendis similique exercitationem consequatur, nobis placeat
-          illo laudantium! Enim perferendis nulla soluta magni error, provident
-          repellat similique cupiditate ipsam, et tempore cumque quod! Qui, iure
-          suscipit tempora unde rerum autem saepe nisi vel cupiditate iusto.
-          Illum, corrupti? Fugiat quidem accusantium nulla. Aliquid inventore
-          commodi reprehenderit rerum reiciendis! Quidem alias repudiandae eaque
-          eveniet cumque nihil aliquam in expedita, impedit quas ipsum nesciunt
-          ipsa ullam consequuntur dignissimos numquam at nisi porro a, quaerat
-          rem repellendus. Voluptates perspiciatis, in pariatur impedit, nam
-          facilis libero dolorem dolores sunt inventore perferendis, aut
-          sapiente modi nesciunt.
-        </Typography>
+        {/* content */}
+        <Stack
+          direction={{ xs: "column", md: "row", sm: "column" }}
+          justifyContent="center"
+          //   alignItems="center"
+        >
+          <Card
+            sx={{
+              minWidth: { sm: 275, md: 280 },
+              borderRadius: 0,
+              background: "#003177",
+              p: 2,
+            }}
+          >
+            <CardContent>
+                <Box sx={{p: 14, display: { xs: "none", md: "block" }}}></Box>
+              <Typography
+                variant="h2"
+                textAlign="right"
+                fontWeight="900"
+                color="#fff"
+              >
+                Calling
+              </Typography>
+              <Typography
+                variant="h3"
+                textAlign="right"
+                fontWeight="900"
+                color="#fff"
+              >
+                to the
+              </Typography>
+              <Typography
+                variant="h1"
+                textAlign="right"
+                fontWeight="900"
+                color="#fff"
+              >
+                Youth!
+              </Typography>
+            </CardContent>
+            <CardActions></CardActions>
+          </Card>
+          <Card sx={{ minWidth: { sm: 275, md: 550 }, borderRadius: 0 }}>
+            <CardContent sx={{ p: 5 }}>
+              <Typography
+                variant="h4"
+                textAlign="left"
+                fontWeight="bold"
+                color="#003177"
+              >
+                Form Pendaftaran
+              </Typography>
+              <Divider sx={{ my: 2 }} />
+              <TextField
+                id="standard-textarea"
+                label="Nama Lengkap"
+                placeholder="Nama Lengkap"
+                variant="outlined"
+                fullWidth
+                sx={{ mb: 1 }}
+              />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={["DatePicker"]}>
+                  <DatePicker
+                    sx={{ flexGrow: 1, mb: 2 }}
+                    label="Tanggal Lahir"
+                  />
+                </DemoContainer>
+              </LocalizationProvider>
+              <TextField
+                id="standard-multiline-static"
+                label="Alamat"
+                multiline
+                rows={4}
+                fullWidth
+                defaultValue=""
+                variant="outlined"
+                sx={{ mb: 2 }}
+              />
+              <TextField
+                id="standard-textarea"
+                label="Nomor Telepon / WhatsApp"
+                placeholder="Nomor Telepon / WhatsApp"
+                variant="outlined"
+                fullWidth
+                sx={{ mb: 2 }}
+              />
+              <TextField
+                id="standard-textarea"
+                label="Email"
+                placeholder="Email"
+                variant="outlined"
+                fullWidth
+                sx={{ mb: 2 }}
+              />
+              <TextField
+                id="standard-textarea"
+                label="Media Sosial"
+                placeholder="Instagram / Facebook / Lainnya"
+                variant="outlined"
+                fullWidth
+                sx={{ mb: 2 }}
+              />
+              <Divider sx={{ my: 2 }} />
+
+              <Button color="warning" sx={{ mb: 1 }} fullWidth size="large" variant="contained" href="#contained-buttons">
+                Reset Form
+              </Button>
+              <Button sx={{ background: "#003177" }} fullWidth size="large" variant="contained" href="#contained-buttons">
+                Submit
+              </Button>
+            </CardContent>
+            <CardActions></CardActions>
+          </Card>
+        </Stack>
       </Box>
 
+      <Box sx={{ display: 'flex', alignItems: 'center', background: "#003177", height: "100px" }}>
+      <Typography
+                variant="p"
+                textAlign="center"
+                color="#fff"
+                sx={{flexGrow: 1}}
+              >
+                &copy; Copyright 2023 | Youth GPdI Metro
+
+              </Typography>
       </Box>
-      <Box sx={{ flexGrow: 1, background: "#003177", height: "100px" }}></Box>
     </Box>
   );
 }
